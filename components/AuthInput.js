@@ -23,7 +23,7 @@ const TextInput = styled.TextInput`
   returnKeyType = "done",
   autoCorrect = true,
   onChange,
-  onEndEditing = () => null
+  onSubmitEditing = () => null
 }) => (
   <Container>
     <TextInput
@@ -31,7 +31,7 @@ const TextInput = styled.TextInput`
       keyboardType={keyboardType}
       placeholder={placeholder}
       autoCapitalize={autoCapitalize}
-      onEndEditing={onEndEditing}
+      onSubmitEditing={onSubmitEditing}
       returnKeyType={returnKeyType}
       autoCorrect={autoCorrect}
       value={value}
