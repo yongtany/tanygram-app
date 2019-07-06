@@ -1,18 +1,18 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import styled from 'styled-components';
 import { withNavigation } from 'react-navigation';
 import NavIcon from './NavIcon';
 
 const Container = styled.TouchableOpacity`
-  padding-right: 20px;
+  padding-left: 20px;
 `;
 const Text =  styled.Text``;
 
 export default withNavigation(({ navigation }) => (
-  <Container onPress={() => navigation.navigate("MessageNavigation")}>
+  <Container onPress={() => navigation.navigate("Home")}>
     <NavIcon
-      name={Platform.OS === "ios" ? "ios-paper-plane" : "md-paper-plane"}
+      name={"logo-instagram"}
+      size={36}
     />
   </Container>
 ));

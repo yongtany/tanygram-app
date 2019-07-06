@@ -11,6 +11,6 @@ import styled from "styled-components";
 
  export default () => (
   <View>
-    <Text>Notification</Text>
+    <Text>Notifications</Text>
   </View>
 );
