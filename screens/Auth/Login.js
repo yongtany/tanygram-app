@@ -15,7 +15,7 @@ const View = styled.View`
 `;
 
 export default ({navigation}) => {
-  const emailInput = useInput("");
+  const emailInput = useInput(navigation.getParam("email", ""));
   const [loading, setLoading] = useState(false);
   const requestSecretMutation = useMutation(LOG_IN, {
     variables: {
@@ -25,12 +25,8 @@ export default ({navigation}) => {
   const handleLogin = async () => {
     const { value } = emailInput;
     const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if(value === "") {
-      return Alert.alert("이메일을 입력해주세요.");
-    } else if(!value.includes("@") || !value.includes(".")) {
-      return Alert.alert("이메일 형식으로 입력해주세요.");
-    } else if(!emailRegex.test(value)) {
-      return Alert.alert("이메일 형식에 맞게 작성해주세요.")
+    if(!emailRegex.test(value)) {
+      return Alert.alert("Invalid email")
     }
     try {
       setLoading(true);
