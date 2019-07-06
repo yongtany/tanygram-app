@@ -57,7 +57,11 @@ export default ({navigation}) => {
           onSubmitEditing={handleLogin}
           autoCorrect={false}
         />
-        <AuthButton loading={loading} onPress={handleLogin} text="Log In" />
+        <AuthButton
+          loading={loading}
+          onPress={handleLogin}
+          text="Log In"
+        />
       </View>
     </TouchableWithoutFeedback>
   );
