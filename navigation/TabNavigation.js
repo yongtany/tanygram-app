@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, View, Platform } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Home from '../screens/Tabs/Home';
-import Search from '../screens/Tabs/Search';
+import SearchContainer from '../screens/Tabs/Search/SearchContainer';
 import Profile from '../screens/Tabs/Profile';
 import Notifications from '../screens/Tabs/Notifications';
 import MessagesLink from '../components/MessagesLink';
@@ -41,7 +41,7 @@ export default createBottomTabNavigator({
     }
   },
   Search: {
-    screen: stackFactory(Search),
+    screen: stackFactory(SearchContainer),
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <NavIcon
