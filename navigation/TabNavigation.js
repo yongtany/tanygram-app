@@ -7,6 +7,7 @@ import Profile from '../screens/Tabs/Profile';
 import Notifications from '../screens/Tabs/Notifications';
 import MessagesLink from '../components/MessagesLink';
 import Detail from '../screens/Detail';
+import UserDetail from '../screens/UserDetail';
 import NavIcon from '../components/NavIcon';
 import HomeLink from '../components/HomeLink';
 import { stackStyles } from './config';
@@ -21,12 +22,19 @@ const stackFactory = (initialRoute, customConfig) =>
     Detail: {
       screen: Detail,
       navigationOptions: {
-        headerTintColor: styles.blackColor,
         title: "Photo"
+      }
+    },
+    UserDetail: {
+      screen: UserDetail,
+      navigationOptions: {
+        title: "Profile"
       }
     }
 }, {
   defaultNavigationOptions: {
+    headerBackTitle: null,
+    headerTintColor: styles.blackColor,
     headerStyle: { ...stackStyles }
   }
 });
