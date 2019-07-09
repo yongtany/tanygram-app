@@ -30,7 +30,6 @@ const SearchPresenter = ({ term, shouldFetch }) => {
     skip: !shouldFetch,
     fetchPolicy: "network-only"
   });
-  console.log(data, loading);
   const onRefresh = async () => {
     try {
       setRefreshing(true);

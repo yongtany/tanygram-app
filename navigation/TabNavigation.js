@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, View, Platform } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Home from '../screens/Tabs/Home';
-import SearchContainer from '../screens/Tabs/Search/SearchContainer';
+import Search from '../screens/Tabs/Search';
 import Profile from '../screens/Tabs/Profile';
 import Notifications from '../screens/Tabs/Notifications';
 import MessagesLink from '../components/MessagesLink';
@@ -10,15 +10,25 @@ import Detail from '../screens/Detail';
 import NavIcon from '../components/NavIcon';
 import HomeLink from '../components/HomeLink';
 import { stackStyles } from './config';
+import styles from '../styles';
 
 const stackFactory = (initialRoute, customConfig) =>
   createStackNavigator({
     InitialRoute: {
       screen: initialRoute,
       navigationOptions: { ...customConfig },
-      headerStyle: { ...stackStyles }
     },
-    Detail
+    Detail: {
+      screen: Detail,
+      navigationOptions: {
+        headerTintColor: styles.blackColor,
+        title: "Photo"
+      }
+    }
+}, {
+  defaultNavigationOptions: {
+    headerStyle: { ...stackStyles }
+  }
 });
 
 export default createBottomTabNavigator({
@@ -43,7 +53,9 @@ export default createBottomTabNavigator({
     }
   },
   Search: {
-    screen: stackFactory(SearchContainer),
+    screen: stackFactory(Search, {
+      headerBackTitle: null
+    }),
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <NavIcon
@@ -103,7 +115,7 @@ export default createBottomTabNavigator({
   }
 },
 {
-  initialRouteName: "Search",
+  initialRouteName: "Profile",
   tabBarOptions: {
     showLabel: false,
     style: {
