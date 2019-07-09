@@ -27,9 +27,9 @@ const stackFactory = (initialRoute, customConfig) =>
     },
     UserDetail: {
       screen: UserDetail,
-      navigationOptions: {
-        title: "Profile"
-      }
+      navigationOptions: ({navigation}) => ({
+        title: navigation.getParam("username")
+      })
     }
 }, {
   defaultNavigationOptions: {
