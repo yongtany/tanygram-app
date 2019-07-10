@@ -44,7 +44,15 @@ const SearchPresenter = ({ term, shouldFetch }) => {
       refreshControl={
         <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
       }
-    >{loading ? < Loader/> : data && data.searchPost && data.searchPost.map(post => <SquarePhoto key={post.id} {...post} />)}</ScrollView>
+    >
+      {loading ? (
+        <Loader />
+      ) : (
+        data &&
+        data.searchPost &&
+        data.searchPost.map(post => <SquarePhoto key={post.id} {...post} />)
+      )}
+    </ScrollView>
   );
 };
 

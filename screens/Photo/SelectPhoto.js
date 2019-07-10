@@ -10,6 +10,7 @@ import styles from "../../styles";
 const View = styled.View`
   flex: 1;
 `;
+
 const Button = styled.TouchableOpacity`
   width: 100px;
   height: 30px;
@@ -22,20 +23,19 @@ const Button = styled.TouchableOpacity`
   border-radius: 5px;
 `;
 
- const Text = styled.Text`
+const Text = styled.Text`
   color: white;
   font-weight: 600;
 `;
-
 
 export default ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [hasPermission, setHasPermission] = useState(false);
   const [selected, setSelected] = useState();
   const [allPhotos, setAllPhotos] = useState();
-  const changeSelected = (photo) => {
+  const changeSelected = photo => {
     setSelected(photo);
-  }
+  };
   const getPhotos = async () => {
     try {
       const { assets } = await MediaLibrary.getAssetsAsync();
@@ -57,13 +57,12 @@ export default ({ navigation }) => {
       }
     } catch (e) {
       console.log(e);
-      hasPermission(false);
+      setHasPermission(false);
     }
   };
   const handleSelected = () => {
-    navigation.navigate("Upload", { photo: selected })
-  }
-
+    navigation.navigate("Upload", { photo: selected });
+  };
   useEffect(() => {
     askPermission();
   }, []);
@@ -81,19 +80,24 @@ export default ({ navigation }) => {
               />
 
               <Button onPress={handleSelected}>
-                <Text>Upload</Text>
+                <Text>Select Photo</Text>
               </Button>
 
-              <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+              <ScrollView
+                contentContainerStyle={{
+                  flexDirection: "row",
+                  flexWrap: "wrap"
+                }}
+              >
                 {allPhotos.map(photo => (
                   <TouchableOpacity
-                    onPress={() => changeSelected(photo)}
                     key={photo.id}
+                    onPress={() => changeSelected(photo)}
                   >
                     <Image
-                      source={{uri: photo.uri}}
+                      source={{ uri: photo.uri }}
                       style={{
-                        width: constants.width /3,
+                        width: constants.width / 3,
                         height: constants.height / 6,
                         opacity: photo.id === selected.id ? 0.5 : 1
                       }}
