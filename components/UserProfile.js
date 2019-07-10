@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, View, TouchableOpacity } from "react-native";
+import { Image, View, TouchableOpacity, AsyncStorage } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
 import PropTypes from "prop-types";
@@ -8,6 +8,7 @@ import { Platform } from "@unimodules/core";
 import constants from "../constants";
 import SquarePhoto from "./SquarePhoto";
 import Post from "./Post";
+
 
 const ProfileHeader = styled.View`
   padding: 20px;
@@ -19,11 +20,13 @@ const HeaderColumn = styled.View``;
 
 const ProfileStats = styled.View`
   flex-direction: row;
+  margin-right: 30px;
 `;
 
 const Stat = styled.View`
   align-items: center;
   margin-left: 40px;
+  font-size: 12px;
 `;
 
 const Bold = styled.Text`
@@ -32,7 +35,7 @@ const Bold = styled.Text`
 
 const StatName = styled.Text`
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 15px;
   color: ${styles.darkGreyColor};
 `;
 
@@ -43,11 +46,27 @@ const ProfileMeta = styled.View`
 
 const Bio = styled.Text``;
 
+const ProfileHandleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+const LogOutButton = styled.TouchableOpacity`
+  border: 1px solid ${styles.darkGreyColor}
+  border-radius: 5;
+  width: ${constants.width - 10}
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+`;
+const LogOut = styled.Text``;
+
 const ButtonContainer = styled.View`
   padding-vertical: 5px;
   border: 1px solid ${styles.lightGreyColor};
+  border-radius: 50;
   flex-direction: row;
-  margin-top: 30px;
+  margin-top: 15px;
 `;
 
 const Button = styled.View`
@@ -67,10 +86,14 @@ const UserProfile = ({
   followingCount,
   bio,
   fullName,
-  posts
+  posts,
+  isSelf
 }) => {
   const [isGrid, setIsGrid] = useState(true);
   const toggleGrid = () => setIsGrid(i => !i);
+  const logOut = () => {
+    AsyncStorage.clear();
+  }
   return (
     <View>
       <ProfileHeader>
@@ -99,6 +122,13 @@ const UserProfile = ({
         <Bold>{fullName}</Bold>
         <Bio>{bio}</Bio>
       </ProfileMeta>
+      <ProfileHandleContainer>
+        {isSelf ? <LogOutButton onPress={logOut}>
+          <LogOut>
+            Log out
+          </LogOut>
+        </LogOutButton> : null}
+      </ProfileHandleContainer>
       <ButtonContainer>
         <TouchableOpacity onPress={toggleGrid}>
           <Button>

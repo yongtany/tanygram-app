@@ -7,6 +7,11 @@ import { useQuery } from "react-apollo-hooks";
 import Loader from "../../../components/Loader";
 import SquarePhoto from "../../../components/SquarePhoto";
 
+const SearchContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 export const SEARCH = gql`
   query search($term: String!) {
     searchPost(term: $term) {
@@ -45,13 +50,15 @@ const SearchPresenter = ({ term, shouldFetch }) => {
         <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
       }
     >
-      {loading ? (
-        <Loader />
-      ) : (
-        data &&
-        data.searchPost &&
-        data.searchPost.map(post => <SquarePhoto key={post.id} {...post} />)
-      )}
+      <SearchContainer>
+        {loading ? (
+          <Loader />
+        ) : (
+          data &&
+          data.searchPost &&
+          data.searchPost.map(post => <SquarePhoto key={post.id} {...post} />)
+        )}
+      </SearchContainer>
     </ScrollView>
   );
 };

@@ -8,6 +8,7 @@ import styles from "../../styles";
 import constants from "../../constants";
 import { useMutation } from "react-apollo-hooks";
 import { FEED_QUERY } from "../Tabs/Home";
+import { ME } from "../Tabs/Profile";
 
 const UPLOAD = gql`
   mutation upload($caption: String!, $files: [String!]!, $location: String) {
@@ -59,7 +60,7 @@ export default ({ navigation }) => {
   const captionInput = useInput("");
   const locationInput = useInput("");
   const uploadMutation = useMutation(UPLOAD, {
-    refetchQueries: () => [{ query: FEED_QUERY }]
+    refetchQueries: () => [{ query: FEED_QUERY }, { query: ME}]
   });
   const handleSubmit = async () => {
     if (captionInput.value === "" || locationInput.value === "") {

@@ -25,7 +25,7 @@ export const ME = gql`
          navigation.setParams("title", data.me.username);
        }
      };
-   }, [data])
+   }, [data]);
 
    return (
      <ScrollView>

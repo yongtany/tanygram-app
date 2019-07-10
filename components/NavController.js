@@ -5,6 +5,5 @@ import MainNavigation from "../navigation/MainNavigation";
 
 export default () => {
   const isLoggedIn = useIsLoggedIn();
-  // return isLoggedIn ? <MainNavigation /> : <AuthNavigation />;
-  return <MainNavigation />
+  return isLoggedIn ? <MainNavigation /> : <AuthNavigation />;
 };
