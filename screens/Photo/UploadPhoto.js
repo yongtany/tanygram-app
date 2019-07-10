@@ -60,14 +60,14 @@ export default ({ navigation }) => {
     });
     try {
       const {
-        data: { path }
+        data: { location }
       } = await axios.post("http://localhost:4000/api/upload", formData, {
         headers: {
           "content-type": "multipart/form-data"
         }
       });
-      setFileUrl(path);
-      console.log(path);
+      setFileUrl(location);
+      console.log(location);
     } catch (e) {
       Alert.alert("Cant upload", "Try later");
     }
