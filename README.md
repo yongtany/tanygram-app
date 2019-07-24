@@ -1,12 +1,12 @@
 # Tanygram iOS & Android App
 
 Screens: 
-- [ ] Home
-- [ ] Search
-- [ ] Upload
+- [X] Home
+- [X] Search
+- [X] Upload
 - [ ] Notifications 
-- [ ] Profile
+- [X] Profile
 - [ ] Edit Profile 
-- [ ] Photo Detail
+- [X] Photo Detail
 - [ ] Photo Comments 
-- [ ] Photo Likes 
+- [X] Photo Likes 
